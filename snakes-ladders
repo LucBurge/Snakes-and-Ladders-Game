@@ -1,0 +1,77 @@
+import random
+board = range(101)
+game = "In Progress"
+loc_Player_One = 0
+loc_Player_Two = 0
+snakes = [13, 34, 51, 66, 85, 98]
+ladders = [11, 15, 27, 49, 76, 81]
+while game == "In Progress" :
+    print("Player One: roll, pass or quit?")
+    player_One_choice = input(" ")
+    if player_One_choice == "roll" :
+        dice_One = random.randint(1, 6)
+        dice_Two = random.randint(1, 6)
+        print("You rolled a", dice_One, "and a", dice_Two)
+        loc_Player_One = loc_Player_One + dice_One + dice_Two
+        print("Location of Player One:", loc_Player_One)
+        if dice_One == dice_Two :
+            print("Roll again!")
+            dice_One = random.randint(1, 6)
+            dice_Two = random.randint(1, 6)
+            print("You rolled a", dice_One, "and a", dice_Two)
+            loc_Player_One = loc_Player_One + dice_One + dice_Two
+            print("Location of Player One:", loc_Player_One)
+        for snake in snakes :
+            if loc_Player_One == snake :
+                print("SNAKE! Move back 10 spaces")
+                loc_Player_One = loc_Player_One - 10
+                print("Location of Player One:", loc_Player_One)
+        for ladder in ladders :
+            if loc_Player_One == ladder :
+                print("LADDER! Move forward 10 spaces")
+                loc_Player_One = loc_Player_One + 10
+                print("Location of Player One:", loc_Player_One)
+    if player_One_choice == "quit" :
+        break
+    if loc_Player_One > 100 :
+        print("Oh no! You rolled too high! Move back 20 spaces")
+        loc_Player_One = loc_Player_One - 20
+        print("Location of Player One", loc_Player_One)
+    if loc_Player_One == 100 :
+        print("Player One Wins!!!")
+        game = "Complete"
+    print("Player Two: roll, pass or quit?")
+    player_Two_choice = input(" ")
+    if player_Two_choice == "roll" :
+        dice_One = random.randint(1, 6)
+        dice_Two = random.randint(1, 6)
+        print("You rolled a", dice_One, "and a", dice_Two)
+        loc_Player_Two = loc_Player_Two + dice_One + dice_Two
+        print("Location of Player Two:", loc_Player_Two)
+        if dice_One == dice_Two :
+            print("Roll again!")
+            dice_One = random.randint(1, 6)
+            dice_Two = random.randint(1, 6)
+            print("You rolled a", dice_One, "and a", dice_Two)
+            loc_Player_Two = loc_Player_Two + dice_One + dice_Two
+            print("Location of Player Two:", loc_Player_Two)
+        for snake in snakes :
+            if loc_Player_Two == snake :
+                print("SNAKE! Move back 10 spaces")
+                loc_Player_Two = loc_Player_Two - 10
+                print("Location of Player Two:", loc_Player_Two)
+        for ladder in ladders :
+            if loc_Player_Two == ladder :
+                print("LADDER! Move forward 10 spaces")
+                loc_Player_Two = loc_Player_Two + 10
+                print("Location of Player Two:", loc_Player_Two)
+    if player_Two_choice == "quit" :
+        break
+    if loc_Player_Two > 100 :
+            print("Oh no! You rolled too high! Move back 20 spaces")
+            loc_Player_Two = loc_Player_Two - 20
+            print("Location of Player Two", loc_Player_Two)
+    if loc_Player_Two == 100 :
+        print("Player Two Wins!!!")
+        game = "Complete"
+print("Game Over!")
